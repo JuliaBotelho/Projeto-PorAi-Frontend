@@ -2,11 +2,11 @@ import React, {createContext, useState} from "react";
 
 export const AuthContext = createContext({})
 
-function AuthProvider({children}){
-
+function AuthProvider(props){
+    const [token, setToken] = useState("")
     return(
-        <AuthContext.Provider value={{}}>
-            {children}
+        <AuthContext.Provider value={{token, setToken}}>
+            {props.children}
         </AuthContext.Provider>
     )
 }

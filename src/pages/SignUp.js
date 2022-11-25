@@ -3,6 +3,7 @@ import axios from "axios";
 import {  useState} from "react";
 import { useNavigate } from "react-router-dom";
 
+
 export default function SignUp() {
     const [email, setEmail] = useState("");
     const [validateEmail, setValidateEmail] = useState("");
@@ -10,10 +11,9 @@ export default function SignUp() {
     const [ name, setName ] = useState("");
     const [validatePass, setValidatePass] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-    // const [ gender, setGender] = useState("");
+ 
     const navigate = useNavigate();
    
-
     function registerUser(e) {
        e.preventDefault()
          const URL = "http://localhost:5000/sign-up";
