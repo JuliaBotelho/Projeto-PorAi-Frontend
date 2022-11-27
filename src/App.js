@@ -10,19 +10,19 @@ import Headers from "./pages/Headers.js";
 import styled from "styled-components";
 
 function App() {
-  const origins = [{title:"Viagens saindo de São Paulo", from:"sp"},{title: "Viagens saindo do Rio de Janeiro", from:"rj"}]
+  const origins = [{ title: "Viagens saindo de São Paulo", from: "sp" }, { title: "Viagens saindo do Rio de Janeiro", from: "rj" }]
   return (
     <BrowserRouter>
       <GlobalStyle />
       <AuthProvider>
-      <StyleHeader>
-{origins.map((o)=> <Headers key={o._id} from={o.from} title={o.title}/>)}
-    </StyleHeader>
+        <StyleHeader>
+          {origins.map((o) => <Headers key={o._id} from={o.from} title={o.title} />)}
+        </StyleHeader>
         <Routes>
-        <Route path="/" element={<MainPage/>} />
-        <Route path="/origem/:origem" element={<OriginTravelPackagesPage/>} />
-        <Route path="/cadastrar" element={<SignUp/>} />
-        <Route path="/entrar" element={<Signin/>} />
+          <Route path="/" element={<MainPage />} />
+          <Route path="/origem/:origem" element={<OriginTravelPackagesPage />} />
+          <Route path="/cadastrar" element={<SignUp />} />
+          <Route path="/entrar" element={<Signin />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
@@ -40,7 +40,7 @@ li{
     height:50px;
     background-color:red;
     margin-left:20px;
-    decoration:none;
+    text-decoration:none;
 }
 `
 export default App;
