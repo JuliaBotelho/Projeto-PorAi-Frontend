@@ -26,7 +26,7 @@ export default function Signin() {
       setToken(res.data.token);
    
 
-      navigate("/cadastrar");
+      navigate("/");
     });
 
     promise.catch((err) => {
