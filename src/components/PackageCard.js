@@ -16,8 +16,8 @@ export default function PackageCard({travel}){
 
 const PackageDiv = styled.div`
     display: flex;
-    width: 550px;
-    height: 400px;
+    width: 490px;
+    height: 360px;
     padding: 10px;
     flex-direction:column;
     align-items: center;
