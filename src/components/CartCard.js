@@ -1,14 +1,25 @@
+import axios from "axios"
 import styled from "styled-components"
+import logo from "../image/logo.png"
+import { useContext } from "react"
 
-export default function CartCard(){
+import { AuthContext } from "../contextelements/auth"
+
+export default function CartCard({packCart, setDeleteClicked}){
+
+    function deleteCartPack(){
+        if(window.confirm("Deseja mesmo retirar este pacote do seu carrinho?") === true){
+        }
+    }
+    
     return(
         <>
         <CartCarddDiv>
-            <img src = {"https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/59/12/0c/caption.jpg?w=1200&h=-1&s=1"}/>
+            <img src = {logo}/>
             <CardText>
-                <h1>njnsajnkj → ndjhjanj</h1>
-                <h3>Quantidade: </h3>
-                <h4>Valor: R$4000,00</h4>
+                <h1>{packCart.from} → {packCart.to}</h1>
+                <h3>Quantidade: {packCart.quantity}</h3>
+                <h4>{packCart.price}</h4>
                 <ion-icon name="trash"></ion-icon>
             </CardText>
         </CartCarddDiv>
@@ -20,6 +31,7 @@ const CartCarddDiv = styled.div`
     display:flex;
     height:180px;
     margin-left:20px;
+    margin-bottom: 30px;
     max-width: 650px;
     border-radius: 5px;
     border: 1px solid #8899b8;
