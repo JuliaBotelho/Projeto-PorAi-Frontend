@@ -26,15 +26,14 @@ export default function CheckoutPage() {
         <ul>
           {myCart.map((p) => (
             <li key={p._id}>
-              <h1>{p.name}</h1>
-              <h1>{p.price}</h1>
-              <h1>{p.from}</h1>
-              <h1>{p.to}</h1>
-              <h1>{p.quantity}</h1>
+              <h1> Preço p/ pessoa : {p.price}</h1>
+              <h1>Origem : {p.from}</h1>
+              <h1>Destino : {p.to}</h1>
+              <h1>Quantidade : {p.quantity}</h1>
             </li>
           ))}
         </ul>
-      <h1>{total}</h1>
+      <h1>Total :{total}</h1>
       </CardPageContentc>
     </CheckoutPageContent>
   );
