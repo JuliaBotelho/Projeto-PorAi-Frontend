@@ -20,7 +20,7 @@ const StyleHeader = styled.div`
   justify-content: center;
   background-color: #e5becb;
   li {
-    width: 290px;
+    width: 250px;
     height: 50px;
     background-color: red;
     margin-left: 20px;

@@ -36,7 +36,7 @@ export default function Signin() {
 
 
   return (
-    <>
+    <SigninContent>
       <StyleFormSignin>
         <form onSubmit={loginApp}>
           <input
@@ -60,9 +60,16 @@ export default function Signin() {
           </button>
         </form>
       </StyleFormSignin>
-    </>
+    </SigninContent>
   );
 }
+
+const SigninContent = styled.div`
+  margin-top: 100px;
+  display:flex;
+  justify-content:center;
+`
+
 const StyleFormSignin = styled.div`
 width: 303px;
 height: 147px;
@@ -82,7 +89,7 @@ input{
 button{
     width:326px;
     height: 46px;
-    background-color:#BA55D3;
+    background-color:#e5becb;
     border-radius: 4.64px;
     border:none;
    }
