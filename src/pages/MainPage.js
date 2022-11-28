@@ -44,6 +44,7 @@ const PageTitle = styled.h6`
             color: #be5e7e;
             margin-top: 80px;
             margin-bottom: 40px;
+            font-family: 'Syne', sans-serif;
             `
 const OriginsConteiners = styled.div`
             width:100%;

@@ -25,26 +25,35 @@ export default function CartPage() {
             .then(res => {
                 setMyCart(res.data.carts)
                 setMyId(res.data.user)
-                setTimeout(defineTotal(), 3000)
+                defineTotal()
             })
             .catch(err => {
-                console.log(err)
+                console.log(err.response.data)
             })
-    }, [total])
+    }, [total,deleteClicked])
 
     if (!myCart) {
         return <CardPageContent><h5>Carregando...</h5></CardPageContent>
     }
 
     function defineTotal(){
+        let i;
         const numbersSetOne=[]
         const numbersSeTwo=[]
+        const numbersSetThree=[]
+        const multipliers =[]
         let sum = 0
         myCart.forEach((p)=>numbersSetOne.push(p.price.replace("R$ ","")))
+        myCart.forEach((m) => multipliers.push(Number(m.quantity)))
 
         numbersSetOne.forEach((value)=>numbersSeTwo.push(Number(value.replace(",00",""))))
 
-        numbersSeTwo.forEach((v)=> sum += v)
+        for(i=0; i<numbersSeTwo.length; i++){
+            numbersSetThree.push(numbersSeTwo[i]*multipliers[i])
+        }
+
+        numbersSetThree.forEach((v)=> sum += v)
+
         setTotal(sum.toFixed(2))   
     }
 
@@ -55,7 +64,7 @@ export default function CartPage() {
             <h5>Olá {myId.name}! Confira seu carrinho antes de fechar o pedido!</h5>
             <h6>Email: {myId.email}</h6>
             {myCart.map(packCart =>
-                    <CartCard packCart={packCart} setDeleteClicked={setDeleteClicked}/>
+                    <CartCard packCart={packCart} setDeleteClicked={setDeleteClicked} deleteClicked={deleteClicked}/>
             )}
             <h6>Total: R${total}</h6>
             <h6>Por Favor selecione o método de pagamento:</h6>

@@ -67,10 +67,11 @@ img{
 }
 button{
   height:45px;
-  width: 300px;
+  min-width: 150px;
   background-color: #e5becb;
   border: 2px solid #e5becb;
   border-right: 2px solid #616164;
+  font-size: 15px;
 }
 `
 export default App;
