@@ -7,9 +7,12 @@ function AuthProvider(props){
     const [name, setName] = useState(localStorage.getItem("name"))
     const [email, setEmail] = useState(localStorage.getItem("email"))
     const [phoneNumber, setPhoneNumber] = useState(localStorage.getItem("phoneNumber"))
+    const [paymentMethod, setPaymentMethod] = useState({ payment: "" });
+    const [total, setTotal] = useState(0);
+    const [myCart, setMyCart] = useState([]);
 console.log(token);
     return(
-        <AuthContext.Provider value={{phoneNumber, setPhoneNumber,email, setEmail,token, setToken, name, setName}}>
+        <AuthContext.Provider value={{myCart, setMyCart, total, setTotal,paymentMethod, setPaymentMethod,phoneNumber, setPhoneNumber,email, setEmail,token, setToken, name, setName}}>
             {props.children}
         </AuthContext.Provider>
     )
