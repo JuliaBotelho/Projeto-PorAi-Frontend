@@ -5,24 +5,33 @@ import { useContext } from "react"
 
 import { AuthContext } from "../contextelements/auth"
 
-export default function CartCard({packCart, setDeleteClicked}){
+export default function CartCard({ packCart, setDeleteClicked, deleteClicked , defineTotal}) {
 
-    function deleteCartPack(){
-        if(window.confirm("Deseja mesmo retirar este pacote do seu carrinho?") === true){
+    const { token } = useContext(AuthContext)
+    const config = { headers: { "Authorization": `Bearer ${token}` } }
+
+    function deleteCartPack() {
+        if (window.confirm("Deseja mesmo retirar este pacote do seu carrinho?") === true) {
+            axios.delete(`https://store-porai.onrender.com/shoppingCart/${packCart._id}`, config)
+                .then(res => {
+                    setDeleteClicked(!deleteClicked)
+                })
+                .catch(err => console.log)
         }
+        console.log(packCart._id);
     }
-    
-    return(
+
+    return (
         <>
-        <CartCarddDiv>
-            <img src = {logo}/>
-            <CardText>
-                <h1>{packCart.from} → {packCart.to}</h1>
-                <h3>Quantidade: {packCart.quantity}</h3>
-                <h4>{packCart.price}</h4>
-                <ion-icon name="trash"></ion-icon>
-            </CardText>
-        </CartCarddDiv>
+            <CartCarddDiv>
+                <img src={logo} />
+                <CardText>
+                    <h1>{packCart.from} → {packCart.to}</h1>
+                    <h3>Quantidade: {packCart.quantity}</h3>
+                    <h4>{packCart.price}</h4>
+                    <ion-icon name="trash" onClick={deleteCartPack}></ion-icon>
+                </CardText>
+            </CartCarddDiv>
         </>
     )
 }

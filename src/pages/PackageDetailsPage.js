@@ -49,7 +49,8 @@ export default function PackageDetailsPage() {
 
     return (
         <>
-            <PageTitle>✰ {myPack.from} → {myPack.to} ✰ {myPack.daysamount} dias!</PageTitle>
+            <PageTitle>✰ {myPack.from} → {myPack.to} ✰ </PageTitle>
+            <PageTitle>{myPack.daysamount} dias!</PageTitle>
             <ImageAndDetails>
                 <img src={myPack.image} />
                 <Details>
@@ -75,9 +76,10 @@ export default function PackageDetailsPage() {
 const PageTitle = styled.h1`
             font-size: 36px;
             color: #be5e7e;
-            margin-top: 80px;
-            margin-bottom: 40px;
+            margin-top: 19px;
+            margin-bottom: 20px;
             margin-left: 20px;
+            font-family: 'Syne', sans-serif;
             `
 
 const ImageAndDetails = styled.div`

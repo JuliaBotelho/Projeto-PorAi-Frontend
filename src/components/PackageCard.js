@@ -7,8 +7,8 @@ export default function PackageCard({travel}){
             <h1>{travel.daysamount} dias</h1>
             <img src={travel.image}/>
             <h2>{travel.firstday} - {travel.lastday}</h2>
-            <h4>Estadia: {travel.stay}</h4>
-            <h3>{travel.price}</h3>
+            <h2>Estadia: {travel.stay}</h2>
+            <h2>{travel.price}</h2>
         </PackageDiv>
     )
 }
@@ -36,16 +36,6 @@ const PackageDiv = styled.div`
         color: #262e3d;
         margin-bottom: 9px;
     }
-    h3{
-        font-size:17px;
-        color: #be5e7e;
-        margin-bottom: 8px;
-    }
-    h4{
-        font-size: 14px;
-        color:#72384b;
-        margin-bottom: 8px;
-    }
     img{
         width: 220px;
         height: 150px;
@@ -54,4 +44,3 @@ const PackageDiv = styled.div`
         margin-bottom: 10px;
     }
 `
-/* const TextPackageDiv = styled.div`` */
