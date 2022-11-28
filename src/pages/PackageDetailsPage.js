@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
-import { Form, useParams } from "react-router-dom";
-import { config } from "localforage";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../contextelements/auth";
 
 export default function PackageDetailsPage() {
     const { idPack } = useParams()
+    const navigate = useNavigate()
     const [myPack, setMyPack] = useState(undefined)
     const [formQuantity, setFormQuantity] = useState({ quantity: 0 })
 
@@ -28,6 +28,7 @@ export default function PackageDetailsPage() {
         setFormQuantity({ ...formQuantity, [name]: value })
     }
 
+
     function addToCart() {
 
         const config = {headers: {"Authorization": `Bearer ${token}`}} 
@@ -36,13 +37,12 @@ export default function PackageDetailsPage() {
             price: myPack.price,
             from: myPack.from,
             to: myPack.to,
-            quantity: formQuantity
-        }
+            quantity: formQuantity.quantity
+        } 
 
-        /* axios.post(url do post do carrinho aqui, body, config)
+        axios.post("http://localhost:5000/shoppingCart", body, config)
                     .then(() => navigate("/carrinho") )
-                    .catch((err)=> console.log(err))
-        */
+                    .catch((err)=> console.log(err.response.data))
     }
 
     
@@ -65,7 +65,7 @@ export default function PackageDetailsPage() {
                         placeholder="Quantas pessoas estarão viajando?"
                         required
                     />
-                    <button>Adicionar ao carrinho 🛒</button>
+                    <button onClick={addToCart} >Adicionar ao carrinho 🛒</button>
                 </Details>
             </ImageAndDetails>
         </>
@@ -84,6 +84,7 @@ const ImageAndDetails = styled.div`
             display:flex;
             padding-left: 20px;
             justify-content: flex-start;
+            margin-bottom: 40px;
             img{
                 width: 500px;
                 border-radius:5px;
