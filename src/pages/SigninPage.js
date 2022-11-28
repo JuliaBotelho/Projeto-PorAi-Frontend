@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export default function Signin() {
   const [form, setForm] = useState({ email: "", password: "" });
   const navigate = useNavigate();
-  const { setToken } = react.useContext(AuthContext);
+  const { setToken , setName, setEmail, setPhoneNumber} = react.useContext(AuthContext);
 
   function handleForm(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -24,9 +24,14 @@ export default function Signin() {
     const promise = axios.post(URL, form);
     promise.then((res) => {
       setToken(res.data.token);
-      console.log(res.data.token);
+      setName(res.data.name);
+      setEmail(res.data.email);
+      setPhoneNumber(res.data.phoneNumber);
+      console.log(res.data);
 localStorage.setItem("token",res.data.token)
-
+localStorage.setItem("name",res.data.name)
+localStorage.setItem("email",res.data.email)
+localStorage.setItem("phoneNumber",res.data.phoneNumber)
       navigate("/");
     });
 

@@ -1,13 +1,31 @@
 import styled from "styled-components";
+import { useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
+import { AuthContext } from "../contextelements/auth.js";
+import react from "react";
 
 export default function CheckoutPage(){
+    const [myId, setMyId] = useState({})
+    const { name, email, phoneNumber} = react.useContext(AuthContext);
+    useEffect(() => {
+        axios.get("https://store-porai.onrender.com/checkout")
+            .then(res => {
+                setMyId(name)
+                console.log(myId, "myId")
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [])
+
     return(
         <CheckoutPageContent>
             <h1>Aqui estão os dados de sua compra!</h1>
             <h1>Desejamos uma ótima viagem!</h1>
             <ReceiptContent>
                 <h2>Dados do Usuário:</h2>
-                <h3>Nome: shsuhua hsauhaushua suhauhs</h3>
+                <h3>Nome: {name}</h3>
                 <h4>Email: djhdsjksakkd</h4>
                 <h4>Telefone: bdhsahdhd</h4>
             </ReceiptContent>

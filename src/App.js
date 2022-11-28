@@ -40,6 +40,7 @@ function App() {
           <Route path="/carrinho" element={<CartPage />} />
           <Route path="/cadastrar" element={<SignUp />} />
           <Route path="/entrar" element={<Signin />} />
+          <Route path="/sucesso" element={< CheckoutPage/>} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
