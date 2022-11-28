@@ -12,17 +12,25 @@ import SignUp from "./pages/SignUp.js";
 import CheckoutPage from "./pages/CheckoutPage.js";
 import Headers from "./pages/Headers.js";
 import styled from "styled-components";
+import { AuthContext } from "./contextelements/auth.js";
+import react from 'react';
 
 function App() {
-  const origins = [{ title: "Viagens saindo de São Paulo", from: "sp" }, { title: "Viagens saindo do Rio de Janeiro", from: "rj" }]
+  const { token } = react.useContext(AuthContext);
+  console.log(token, "teste");
+  const origins = [{_id:1, title: "Viagens saindo de São Paulo", from: "sp" }, {_id:2, title: "Viagens saindo do Rio de Janeiro", from: "rj" }]
   return (
     <BrowserRouter>
       <GlobalStyle />
       <AuthProvider>
         <StyleHeader>
           {origins.map((o) => <Headers key={o._id} from={o.from} title={o.title} />)}
+          {!token &&
+          <>
           <Link to={"/entrar"}><button>Login</button></Link>
           <Link to={"/cadastrar"}><button>Cadastre-se aqui!</button></Link>
+          </>
+        }
           <Link to={"/"}><img src={logo}/></Link>
         </StyleHeader>
         <Routes>

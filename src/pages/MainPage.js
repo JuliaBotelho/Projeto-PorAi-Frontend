@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 import PackageCard from "../components/PackageCard";
 import axios from "axios";
 
+import react from "react"
 export default function MainPage() {
     const [catalogue, setCatalogue] = useState([])
-
+   
     useEffect(() => {
-        axios.get("http://localhost:5000/catalogue")
+        axios.get("https://store-porai.onrender.com/catalogue")
             .then(res => setCatalogue(res.data))
             .catch(err => console.log(err))
     }, [])
@@ -18,10 +19,10 @@ export default function MainPage() {
             <PageTitle>Bem-vindo!</PageTitle>
             <>
                 <OriginsConteiners>
-                    <h7>Vamos planejar a viagem dos seus sonhos!</h7>
+                    <h4>Vamos planejar a viagem dos seus sonhos!</h4>
                     <PackageConteiner>
                         {catalogue.map(travel => 
-                            <Link to={`/pacote/${travel._id}`} key={travel}>
+                            <Link to={`/pacote/${travel._id}`} key={travel._id}>
                                 <PackageCard travel={travel} />
                             </Link>
                         )}
@@ -49,7 +50,7 @@ const OriginsConteiners = styled.div`
             display:flex;
             flex-direction: column;
             align-items:flex-start;
-        h7{
+        h4{
             font-size: 28px;
             color: #77b5fe;
             margin-top: 40px;

@@ -16,7 +16,7 @@ export default function SignUp() {
 
   function registerUser(e) {
     e.preventDefault()
-    const URL = "http://localhost:5000/sign-up";
+    const URL = "https://store-porai.onrender.com/sign-up";
 
     const body = {
       name,

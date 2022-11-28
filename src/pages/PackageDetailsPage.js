@@ -14,7 +14,7 @@ export default function PackageDetailsPage() {
     const {token} = useContext(AuthContext)
 
     useEffect(() => {
-        axios.get("http://localhost:5000/catalogue")
+        axios.get("https://store-porai.onrender.com/catalogue")
             .then(res => setMyPack((res.data.filter(p => p._id === idPack))[0]))
             .catch(err => console.log(err))
     }, [])

@@ -13,7 +13,7 @@ export default function OriginTravelPackagesPage() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/catalogue?from=${origem}`)
+      .get(`https://store-porai.onrender.com/catalogue?from=${origem}`)
 
       .then((res) => {
         console.log(res.data);
@@ -34,7 +34,7 @@ export default function OriginTravelPackagesPage() {
       <StateFrom>Viagens partindo de {title}</StateFrom>
       <StylePack>
         {origin.map((opt) => (
-          <Link to={`/pacote/${opt._id}`} key={opt}>
+          <Link to={`/pacote/${opt._id}`} key={opt._id}>
             <PackageCard travel={opt} />
           </Link>
         ))}

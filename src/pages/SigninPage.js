@@ -19,12 +19,13 @@ export default function Signin() {
   }
 
   function login() {
-    const URL = "http://localhost:5000/sign-in";
+    const URL = "https://store-porai.onrender.com/sign-in";
 
     const promise = axios.post(URL, form);
     promise.then((res) => {
       setToken(res.data.token);
-
+      console.log(res.data.token);
+localStorage.setItem("token",res.data.token)
 
       navigate("/");
     });
