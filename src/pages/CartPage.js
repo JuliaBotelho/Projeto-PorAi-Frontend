@@ -20,7 +20,7 @@ export default function CartPage() {
     }
 
     useEffect(() => {
-        axios.get("http://localhost:5000/shoppingCart", config)
+        axios.get("https://store-porai.onrender.com/shoppingCart", config)
             .then(res => {
                 setMyCart(res.data.carts)
                 setMyId(res.data.user)
@@ -47,7 +47,7 @@ export default function CartPage() {
                 <input type="radio" value="dinheiro" name="payment"/>Dinheiro
                 <input type="radio" value="pix" name="payment"/>Pix
             </PaymentSetting>
-            <button>Fechar Pedido</button>
+            <button onClick={"andreia"}>Fechar Pedido</button>
         </CardPageContent>
     )
 }
