@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Package from "./Package";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import PackageCard from "../components/PackageCard";
 
 export default function OriginTravelPackagesPage() {
-    
-  const {origem} = useParams();
+
+  const { origem } = useParams();
 
   const [origin, setOrigin] = useState([]);
-  
+  const [title, setTitle] = useState("")
+
   useEffect(() => {
     axios
       .get(`http://localhost:5000/catalogue?from=${origem}`)
@@ -17,38 +18,44 @@ export default function OriginTravelPackagesPage() {
       .then((res) => {
         console.log(res.data);
         setOrigin(res.data);
+        setTitle(res.data[0].from)
       })
       .catch((err) => {
         console.log(err);
       });
   }, [origem]);
 
+  if (!origin) {
+    return <StateFrom>Carregando...</StateFrom>
+  }
+
   return (
     <>
-  
+      <StateFrom>Viagens partindo de {title}</StateFrom>
       <StylePack>
         {origin.map((opt) => (
-          <Package
-            from={opt.from}
-            key={opt.id}
-            image={opt.image}
-            firstday={opt.firstday}
-            lastday={opt.lastday}
-            description={opt.description}
-            daysamount={opt.daysamount}
-            price={opt.price}
-            stay={opt.stay}
-            to={opt.to}
-          />
+          <Link to={`/pacote/${opt._id}`} key={opt}>
+            <PackageCard travel={opt} />
+          </Link>
         ))}
       </StylePack>
     </>
   );
 }
 const StylePack = styled.div`
+  margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
 `;
+
+const StateFrom = styled.h1`
+    font-size: 28px;
+    color: #77b5fe;
+    margin-top: 55px;
+    margin-bottom: 45px;
+    margin-left: 20px;
+`
+
 const StyleHeader = styled.div` 
 width: 100%;
 height: 50px;

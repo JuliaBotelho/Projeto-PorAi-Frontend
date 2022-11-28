@@ -13,16 +13,18 @@ export default function Headers({ from, title }) {
 }
 const StyleHeader = styled.div`
   width: 100%;
-  height: 50px;
-  background-color: #ffffff;
+  height: 75px;
   display: flex;
-  align-items: space-between;
+  align-items: center;
   flex-direction: row;
+  justify-content: center;
+  background-color: #e5becb;
   li {
     width: 290px;
     height: 50px;
     background-color: red;
     margin-left: 20px;
-    decoration: none;
+    text-decoration: none;
   }
 `;
+

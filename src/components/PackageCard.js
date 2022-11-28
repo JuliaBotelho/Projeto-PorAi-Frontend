@@ -8,7 +8,6 @@ export default function PackageCard({travel}){
             <img src={travel.image}/>
             <h2>{travel.firstday} - {travel.lastday}</h2>
             <h4>Estadia: {travel.stay}</h4>
-            <h5>{travel.description}</h5>
             <h3>{travel.price}</h3>
         </PackageDiv>
     )
@@ -16,26 +15,26 @@ export default function PackageCard({travel}){
 
 const PackageDiv = styled.div`
     display: flex;
-    width: 550px;
-    height: 400px;
+    width: 400px;
+    height: 320px;
     padding: 10px;
     flex-direction:column;
     align-items: center;
     border-radius:3px;
     background-color:#fddee7;
-    margin : 0px 15px;
+    margin : 8px 15px;
     box-shadow: 0px 2px 4px 2px #0000001A;
     box-sizing: border-box;
     h1{
-        font-size:18px;
+        font-size:15px;
         color: #384357;
         margin-top: 5px;
         line-height: 22px;
     }
     h2{
-        font-size:12px;
+        font-size:15px;
         color: #262e3d;
-        margin-bottom: 8px;
+        margin-bottom: 9px;
     }
     h3{
         font-size:17px;
@@ -43,12 +42,7 @@ const PackageDiv = styled.div`
         margin-bottom: 8px;
     }
     h4{
-        font-size: 13px;
-        color:#72384b;
-        margin-bottom: 5px;
-    }
-    h5{
-        font-size: 13px;
+        font-size: 14px;
         color:#72384b;
         margin-bottom: 8px;
     }

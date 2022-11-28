@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Signin() {
-    const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const { setToken } = react.useContext(AuthContext);
 
@@ -24,7 +24,7 @@ export default function Signin() {
     const promise = axios.post(URL, form);
     promise.then((res) => {
       setToken(res.data.token);
-   
+
 
       navigate("/");
     });
@@ -65,7 +65,7 @@ export default function Signin() {
 }
 const StyleFormSignin = styled.div`
 width: 303px;
-heigth: 147px;
+height: 147px;
 display:flex;
 justify-content:center;
 margin-left:36px;
@@ -79,7 +79,6 @@ input{
     margin-bottom:13px;
  
   }
-}
 button{
     width:326px;
     height: 46px;
