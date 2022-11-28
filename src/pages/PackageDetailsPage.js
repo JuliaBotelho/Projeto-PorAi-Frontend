@@ -40,7 +40,7 @@ export default function PackageDetailsPage() {
             quantity: formQuantity.quantity
         } 
 
-        axios.post("http://localhost:5000/shoppingCart", body, config)
+        axios.post("https://store-porai.onrender.com/shoppingCart", body, config)
                     .then(() => navigate("/carrinho") )
                     .catch((err)=> console.log(err.response.data))
     }
