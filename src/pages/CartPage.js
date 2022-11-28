@@ -10,6 +10,7 @@ export default function CartPage() {
     const [myId, setMyId] = useState({})
     const [paymentMethod, setPaymentMethod] = useState({payment:""})
     const [deleteClicked, setDeleteClicked] = useState(false)
+    const [total, setTotal] = useState(undefined)
 
     const { token } = useContext(AuthContext)
     const config = { headers: { "Authorization": `Bearer ${token}` } }
@@ -24,16 +25,30 @@ export default function CartPage() {
             .then(res => {
                 setMyCart(res.data.carts)
                 setMyId(res.data.user)
+                setTimeout(defineTotal(), 3000)
             })
             .catch(err => {
                 console.log(err)
             })
-    }, [])
+    }, [total])
 
     if (!myCart) {
         return <CardPageContent><h5>Carregando...</h5></CardPageContent>
     }
 
+    function defineTotal(){
+        const numbersSetOne=[]
+        const numbersSeTwo=[]
+        let sum = 0
+        myCart.forEach((p)=>numbersSetOne.push(p.price.replace("R$ ","")))
+
+        numbersSetOne.forEach((value)=>numbersSeTwo.push(Number(value.replace(",00",""))))
+
+        numbersSeTwo.forEach((v)=> sum += v)
+        setTotal(sum.toFixed(2))   
+    }
+
+    
 
     return (
         <CardPageContent>
@@ -42,6 +57,7 @@ export default function CartPage() {
             {myCart.map(packCart =>
                     <CartCard packCart={packCart} setDeleteClicked={setDeleteClicked}/>
             )}
+            <h6>Total: R${total}</h6>
             <h6>Por Favor selecione o método de pagamento:</h6>
             <PaymentSetting onChange={handlePayment}>
                 <input type="radio" value="dinheiro" name="payment"/>Dinheiro
