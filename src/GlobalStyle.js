@@ -45,9 +45,16 @@ table {
 	border-spacing: 0;
 }
 
+body{
+	background-color:#dfe2e8;
+}
+
 
 *{
 	box-sizing: border-box;
+	a{
+		text-decoration: none;
+	}
 }
 `
 
