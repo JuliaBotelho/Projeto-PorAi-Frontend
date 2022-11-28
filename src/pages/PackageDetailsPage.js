@@ -1,11 +1,17 @@
 import styled from "styled-components";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { Form, useParams } from "react-router-dom";
+import { config } from "localforage";
+
+import { AuthContext } from "../contextelements/auth";
 
 export default function PackageDetailsPage() {
     const { idPack } = useParams()
     const [myPack, setMyPack] = useState(undefined)
+    const [formQuantity, setFormQuantity] = useState({ quantity: 0 })
+
+    const {token} = useContext(AuthContext)
 
     useEffect(() => {
         axios.get("http://localhost:5000/catalogue")
@@ -13,9 +19,34 @@ export default function PackageDetailsPage() {
             .catch(err => console.log(err))
     }, [])
 
-    if (!myPack){
+    if (!myPack) {
         return <PageTitle>Carregando...</PageTitle>
     }
+
+    function handleFormQuantity(e) {
+        const { name, value } = e.target
+        setFormQuantity({ ...formQuantity, [name]: value })
+    }
+
+    function addToCart() {
+
+        const config = {headers: {"Authorization": `Bearer ${token}`}} 
+
+        const body = {
+            price: myPack.price,
+            from: myPack.from,
+            to: myPack.to,
+            quantity: formQuantity
+        }
+
+        /* axios.post(url do post do carrinho aqui, body, config)
+                    .then(() => navigate("/carrinho") )
+                    .catch((err)=> console.log(err))
+        */
+    }
+
+    
+
     return (
         <>
             <PageTitle>✰ {myPack.from} → {myPack.to} ✰ {myPack.daysamount} dias!</PageTitle>
@@ -26,6 +57,14 @@ export default function PackageDetailsPage() {
                     <h5>{myPack.description}</h5>
                     <h4>Estadia: {myPack.stay}</h4>
                     <h3>{myPack.price}</h3>
+                    <input
+                        name="quantity"
+                        type="number"
+                        value={formQuantity.quantity}
+                        onChange={handleFormQuantity}
+                        placeholder="Quantas pessoas estarão viajando?"
+                        required
+                    />
                     <button>Adicionar ao carrinho 🛒</button>
                 </Details>
             </ImageAndDetails>
@@ -76,10 +115,15 @@ const Details = styled.div`
         color:#72384b;
         margin-bottom: 16px;
     }
+    input{
+        height: 40px;
+        width: 150px;
+        margin: 8px 0px;
+    }
     button{
         width: 390px;
         color: #ab5471;
-        min-height: 60px;
+        height: 60px;
         font-size: 21px;
         background-color:#e5becb;
         border: 2px solid #e5becb;
