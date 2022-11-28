@@ -19,7 +19,7 @@ export default function MainPage() {
             <>
                 <OriginsConteiners>
                     <h7>Rio de Janeiro - RJ</h7>
-                    <PackageConteiner>
+                <PackageConteiner>
                         {catalogue.map(travel => travel.from === "Rio de Janeiro - RJ" ? (
                             <Link to={`/pacote/${travel._id}`} key={travel}>
                                 <PackageCard travel={travel} />
